@@ -1,0 +1,28 @@
+language: cpp
+
+matrix:
+  include:
+
+    - os: linux
+      addons:
+        apt:
+          packages:
+            - libreadline-dev
+
+    - os: osx
+      osx_image: xcode8
+      before_install:
+        - brew update
+        - brew install readline
+
+script:
+  
+  - git clone https://github.com/berkeley-abc/abc.git
+
+  - mkdir build
+  - cd build
+
+  - cmake ..
+
+  - make -j2
+  - make test
